@@ -23,13 +23,16 @@ year=int(now.year)
 
 
 #FOR OAUTH AUTHENTICATION -- NEEDED TO ACCESS THE TWITTER API
+# replace the key with the accesstoken we got for the twitter app
 t = Twython(app_key='API_KEY', #REPLACE 'APP_KEY' WITH YOUR APP KEY, ETC., IN THE NEXT 4 LINES
     app_secret='API_SECRET',
     oauth_token='ACCESS_TOKEN',
     oauth_token_secret='TOKEN_SECRET')
    
+   
+# add constraints in here
 data = t.search(q='#UB', count=30)
-tweets = data['statuses']
+tweets = data['statuses'] #results i want is only the statuses so we use this
 
 #NAME OUR OUTPUT FILE - %i WILL BE REPLACED BY CURRENT MONTH, DAY, AND YEAR
 outfn = "tweets_data_%i.%i.%i.txt" % (now.month, now.day, now.year)
